@@ -162,7 +162,7 @@ regexp is applied to the whole line."
         ;; Delete only the faces that we've added
         (setq dired-font-lock-keywords
               (diredful-filter
-               '(lambda (x)
+               #'(lambda (x)
                   (if (equal face
                              (diredful-get-face-part x))
                       nil
@@ -386,7 +386,7 @@ file name).\n"))
     ;; Keymaps
     (set-keymap-parent map widget-keymap)
     (define-key map (kbd "C-c C-v")
-      '(lambda () (interactive) (diredful-save diredful-widgets)))
+      #'(lambda () (interactive) (diredful-save diredful-widgets)))
     (use-local-map map)
     (widget-setup))
   (goto-char (point-min))
@@ -412,7 +412,7 @@ update."
     ;; Delete the old name in case of a rename
     (setq dired-font-lock-keywords
           (diredful-filter
-           '(lambda (x)
+           #'(lambda (x)
               (if (equal (concat "diredful-face-" old-name)
                          (diredful-get-face-part x))
                   nil
